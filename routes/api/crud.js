@@ -86,21 +86,25 @@ router.get('/last', (req, res) => {
 // @ route DELETE req to api/car/collections
 // @desc Drop all records for repeating the tests
 router.delete('/carcolls', checkAuth, (req, res) => {
-    if(Car.drop()) {
-      return res.status(410).json({message : "Car collection dropped successfully"});
-    } else {
-      return res.status(400).json({message : "Car collection doesn't exists."})
-    }
+    Car.drop((err, ok) {
+      if(ok) {
+        return res.status(410).json({message : "Car collection dropped successfully"});
+      } else {
+        return res.status(400).json({err});
+      }
+    }); 
 });
 
 // @ route DELETE req to api/car/collections
 // @desc Drop all records for repeating the tests
 router.delete('/usercolls', checkAuth, (req, res) => {
-    if(User.drop()) {
+    User.drop((err, ok) {
+      if(ok) {
         return res.status(410).json({message : "User collection dropped successfully"});
       } else {
-        return res.status(404).json({message : "User collection doesn't exists."});
+        return res.status(400).json({err});
       }
+    }); 
 });
 
 
