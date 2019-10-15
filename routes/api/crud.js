@@ -86,7 +86,7 @@ router.get('/last', (req, res) => {
 // @ route DELETE req to api/car/collections
 // @desc Drop all records for repeating the tests
 router.delete('/carcolls', checkAuth, (req, res) => {
-    Car.drop((err, ok) {
+    Car.drop((err, ok) => {
       if(ok) {
         return res.status(410).json({message : "Car collection dropped successfully"});
       } else {
@@ -98,7 +98,7 @@ router.delete('/carcolls', checkAuth, (req, res) => {
 // @ route DELETE req to api/car/collections
 // @desc Drop all records for repeating the tests
 router.delete('/usercolls', checkAuth, (req, res) => {
-    User.drop((err, ok) {
+    User.drop((err, ok) => {
       if(ok) {
         return res.status(410).json({message : "User collection dropped successfully"});
       } else {
