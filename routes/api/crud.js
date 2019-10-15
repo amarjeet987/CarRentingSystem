@@ -70,15 +70,26 @@ router.delete('/:id', checkAuth, (req, res) => {
 });
 
 /************************************* helper function for testing *************************************/
+// helper function for testing
 // @ route GET req to api/car/last
 // @desc Get the last record
 // gets the last entered entry's id
-
-router.get('/last', (req, res) => {
+router.get('/lastCar', checkAuth, (req, res) => {
   Car.find()
      .sort({_id : -1})
      .limit(1)
      .then(car => res.status(200).json(car))
+     .catch(err => res.status(500).json({err}));
+});
+
+// @ route GET req to api/car/last
+// @desc Get the last record from user
+// gets the last entered entry's id
+router.get('/lastUser', checkAuth, (req, res) => {
+  User.find()
+     .sort({_id : -1})
+     .limit(1)
+     .then(user => res.status(200).json(user))
      .catch(err => res.status(500).json({err}));
 });
 
