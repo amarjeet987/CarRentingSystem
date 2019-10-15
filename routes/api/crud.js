@@ -88,12 +88,12 @@ router.get('/last', (req, res) => {
 router.delete('/collections', checkAuth, (req, res) => {
     if(Car.drop()) {
       if(User.drop()) {
-        return res.status(410).json({message : "All collections dropped successfully");
+        return res.status(410).json({message : "All collections dropped successfully"});
       } else {
-        return res.status(400).json({message : "Car collection dropped, cannot drop User collection.");
+        return res.status(400).json({message : "Car collection dropped, cannot drop User collection."});
       }
     } else {
-      return res.status(400).json({message : "Cannot drop collections, try again")
+      return res.status(400).json({message : "Cannot drop collections, try again"})
     }
 });
 
