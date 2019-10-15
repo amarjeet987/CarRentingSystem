@@ -68,4 +68,17 @@ router.delete('/:id', checkAuth, (req, res) => {
       .catch(err => res.status(404).json({ success : false, error: "Entry not found" }));
 });
 
+// helper function for testing
+// @ route GET req to api/car/last
+// @desc Get the last record
+// gets the last entered entry's id
+
+router.get('/last', (req, res) => {
+  Car.find()
+     .sort({_id : -1})
+     .limit(1)
+     .then(car => res.status(200).json(car))
+     .catch(err => res.status(500).json({err});
+});
+
 module.exports = router;
