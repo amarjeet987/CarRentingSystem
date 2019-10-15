@@ -89,8 +89,8 @@ router.post('/carcolls', checkAuth, (req, res) => {
     Car.find()
        .then(car => {
           car = null;
-          car.save().then(car => res.status(410).json({message : "Car collection dropped successfully", car})
-                    .catch(err => res.status(400).json({err});
+          car.save().then(car => res.status(410).json({message : "Car collection dropped successfully", car}))
+                    .catch(err => res.status(400).json({err}));
        });
 });
 
