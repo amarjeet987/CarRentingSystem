@@ -82,31 +82,4 @@ router.get('/last', (req, res) => {
      .catch(err => res.status(500).json({err}));
 });
 
-
-// @ route DELETE req to api/car/collections
-// @desc Drop all records for repeating the tests
-router.get('/carcolls', checkAuth, (req, res) => {
-    Car.find()
-       .then(car => {
-          car = null;
-          car.save().then(car => res.status(410).json({message : "Car collection dropped successfully", car}))
-                    .catch(err => res.status(400).json({err}));
-       })
-       .catch(err => res.status(400).json({err}));;
-});
-
-// @ route DELETE req to api/car/collections
-// @desc Drop all records for repeating the tests
-router.delete('/usercolls', checkAuth, (req, res) => {
-    User.find().drop((err, ok) => {
-      if(ok) {
-        return res.status(410).json({message : "User collection dropped successfully"});
-      } else {
-        return res.status(400).json({err});
-      }
-    }); 
-});
-
-
-
 module.exports = router;
