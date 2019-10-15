@@ -74,7 +74,7 @@ router.delete('/:id', checkAuth, (req, res) => {
 // @ route GET req to api/car/last
 // @desc Get the last record
 // gets the last entered entry's id
-router.get('/lastCar', checkAuth, (req, res) => {
+router.get('/lastCar', (req, res) => {
   Car.find()
      .sort({_id : -1})
      .limit(1)
@@ -85,7 +85,7 @@ router.get('/lastCar', checkAuth, (req, res) => {
 // @ route GET req to api/car/last
 // @desc Get the last record from user
 // gets the last entered entry's id
-router.get('/lastUser', checkAuth, (req, res) => {
+router.get('/lastUser', (req, res) => {
   User.find()
      .sort({_id : -1})
      .limit(1)
