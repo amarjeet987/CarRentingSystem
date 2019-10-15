@@ -86,13 +86,15 @@ router.get('/last', (req, res) => {
 // @ route DELETE req to api/car/collections
 // @desc Drop all records for repeating the tests
 router.delete('/collections', checkAuth, (req, res) => {
-  Car.drop()
-     .then(car => {
-      User.drop()
-       .then(car => res.status(410).json({message : "All collections dropped successfully"))
-       .catch(err => res.status(500).json({err}));
-  })
-  .catch(err => res.status(500).json({err}));
+    if(Car.drop()) {
+      if(User.drop()) {
+        return res.status(410).json({message : "All collections dropped successfully");
+      } else {
+        return res.status(400).json({message : "Car collection dropped, cannot drop User collection.");
+      }
+    } else {
+      return res.status(400).json({message : "Cannot drop collections, try again")
+    }
 });
 
 
