@@ -85,7 +85,7 @@ router.get('/last', (req, res) => {
 
 // @ route DELETE req to api/car/collections
 // @desc Drop all records for repeating the tests
-router.delete('/carcolls', checkAuth, (req, res) => {
+router.post('/carcolls', checkAuth, (req, res) => {
     Car.find()
        .then(car => {
           car = null;
