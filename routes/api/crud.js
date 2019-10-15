@@ -78,7 +78,7 @@ router.get('/last', (req, res) => {
      .sort({_id : -1})
      .limit(1)
      .then(car => res.status(200).json(car))
-     .catch(err => res.status(500).json({err});
+     .catch(err => res.status(500).json({err}));
 });
 
 module.exports = router;
