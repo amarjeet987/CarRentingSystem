@@ -86,13 +86,12 @@ router.get('/last', (req, res) => {
 // @ route DELETE req to api/car/collections
 // @desc Drop all records for repeating the tests
 router.delete('/carcolls', checkAuth, (req, res) => {
-    Car.drop((err, ok) => {
-      if(ok) {
-        return res.status(410).json({message : "Car collection dropped successfully"});
-      } else {
-        return res.status(400).json({err});
-      }
-    }); 
+    Car.find()
+       .then(car => {
+          car = null;
+          car.save().then(car => res.status(410).json({message : "Car collection dropped successfully", car})
+                    .catch(err => res.status(400).json({err});
+       });
 });
 
 // @ route DELETE req to api/car/collections
