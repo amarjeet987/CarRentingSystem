@@ -22,6 +22,7 @@ app.use('/api/car', require('./routes/api/crud'));
 app.use('/api/users', require('./routes/api/newUser'));
 app.use('/api/auth', require('./routes/api/auth'));
 app.use('/api/book', require('./routes/api/booking'));
+app.use('/api/test', require('./routes/api/test'));
 
 // server
 const port = process.env.PORT || 5000;
