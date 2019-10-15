@@ -11,6 +11,7 @@ const checkAuth = require("../../middlewares/auth");
 
 // item model
 const Car = require("../../models/Car");
+const User = require("../../models/User");
 
 /*********************** routes ***********************/
 
@@ -68,7 +69,7 @@ router.delete('/:id', checkAuth, (req, res) => {
       .catch(err => res.status(404).json({ success : false, error: "Entry not found" }));
 });
 
-// helper function for testing
+/************************************* helper function for testing *************************************/
 // @ route GET req to api/car/last
 // @desc Get the last record
 // gets the last entered entry's id
@@ -80,5 +81,19 @@ router.get('/last', (req, res) => {
      .then(car => res.status(200).json(car))
      .catch(err => res.status(500).json({err}));
 });
+
+
+// @ route DELETE req to api/car/collections
+// @desc Drop all records for repeating the tests
+router.delete('/collections', checkAuth, (req, res) => {
+  Car.drop()
+     .then(car => {
+      User.drop()
+       .then(car => res.status(410).json({message : "All collections dropped successfully"))
+       .catch(err => res.status(500).json({err}));
+  })
+  .catch(err => res.status(500).json({err}));
+});
+
 
 module.exports = router;
