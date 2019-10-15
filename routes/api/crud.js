@@ -98,7 +98,7 @@ router.delete('/carcolls', checkAuth, (req, res) => {
 // @ route DELETE req to api/car/collections
 // @desc Drop all records for repeating the tests
 router.delete('/usercolls', checkAuth, (req, res) => {
-    User.drop((err, ok) => {
+    User.find().drop((err, ok) => {
       if(ok) {
         return res.status(410).json({message : "User collection dropped successfully"});
       } else {
