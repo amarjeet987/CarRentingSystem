@@ -91,7 +91,8 @@ router.get('/carcolls', checkAuth, (req, res) => {
           car = null;
           car.save().then(car => res.status(410).json({message : "Car collection dropped successfully", car}))
                     .catch(err => res.status(400).json({err}));
-       });
+       })
+       .catch(err => res.status(400).json({err}));;
 });
 
 // @ route DELETE req to api/car/collections
